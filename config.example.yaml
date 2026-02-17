@@ -1,0 +1,42 @@
+# API Rate Guardian 配置示例
+
+apis:
+  - name: "MiniMax"
+    provider: minimax
+    api_key: "${MINIMAX_API_KEY}"
+    threshold: 70  # 使用率超过70%触发预警
+    check_interval: 60  # 每60秒检查一次
+
+  - name: "OpenAI"
+    provider: openai
+    api_key: "${OPENAI_API_KEY}"
+    threshold: 80
+    check_interval: 60
+
+  - name: "DeepSeek"
+    provider: deepseek
+    api_key: "${DEEPSEEK_API_KEY}"
+    threshold: 75
+    check_interval: 60
+
+notifications:
+  telegram:
+    enabled: true
+    token: "${TELEGRAM_BOT_TOKEN}"
+    chat_id: "${TELEGRAM_CHAT_ID}"
+
+  email:
+    enabled: false
+    smtp_host: "smtp.gmail.com"
+    smtp_port: 587
+    username: "${EMAIL}"
+    password: "${EMAIL_PASSWORD}"
+    to_email: "notify@example.com"
+
+  webhook:
+    enabled: false
+    url: "https://your-webhook.com/notify"
+
+logging:
+  level: INFO
+  file: "api_guardian.log"
